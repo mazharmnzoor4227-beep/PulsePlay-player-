@@ -12,8 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Unpack PulsePlay source
+      - name: Reconstruct PulsePlay source
         run: |
+          cat source_chunks/part* | base64 --decode > PulsePlay-source-fixed.zip
+          unzip -t PulsePlay-source-fixed.zip
           mkdir app
           unzip -q PulsePlay-source-fixed.zip -d app
 
